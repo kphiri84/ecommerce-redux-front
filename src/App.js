@@ -15,6 +15,7 @@ import Accesories from './components/Accesories';
 import Cart from './components/Cart';
 import Product from './components/Product';
 import Landing from './components/Landing';
+import Payment from './components/Payment';
 import { logout } from './actions/auth.action';
 import { clearMessage } from './actions/message.action';
 import { history } from './helpers/history';
@@ -136,6 +137,7 @@ const App = () => {
 				<Route exact path="/accessoires" component={Accesories} />
 				<Route exact path="/accessoires/:id" component={Product} />
 				<Route exact path="/panier" component={Cart} />
+				<Route exact path="/paiement" component={Payment} />
 			</Switch>
 		</Router>
 	);

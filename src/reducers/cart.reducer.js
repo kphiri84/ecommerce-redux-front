@@ -7,6 +7,7 @@ import {
 	PAY_TOTAL_FAILURE,
 	PAID_TOTAL_SUCCESSFULLY
 } from '../actions/types';
+import produce from 'immer';
 
 const initialState = {
 	cart: [],
@@ -14,7 +15,7 @@ const initialState = {
 	isFetching: false,
 	message: ''
 };
-export default function cart(state = initialState, action) {
+const cart = produce((state = initialState, action) => {
 	const { type } = action;
 	switch (type) {
 		case FETCHING_CART:
@@ -24,8 +25,14 @@ export default function cart(state = initialState, action) {
 			};
 
 		case ADD_TO_CART_SUCCESS:
-			return { cart: action.cart }
-			;
+			const item = action.cart;
+			const id = state.cart.find((x) => x.id === item.id);
+			if (id) {
+				return {
+					cart: state.cart.map((x) => (x.id === id.id ? item : x))
+				};
+			}
+			return { cart: [ ...state.cart, item ] };
 		case CLEAR_ERROR_MESSAGE:
 			return {
 				...state,
@@ -65,4 +72,6 @@ export default function cart(state = initialState, action) {
 		default:
 			return state;
 	}
-}
+});
+
+export default cart;

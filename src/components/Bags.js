@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchProducts } from '../actions/product.action';
@@ -8,6 +8,7 @@ const Bags = () => {
 	const { product } = useSelector((state) => state.product);
 	const dispatch = useDispatch();
 	const { cart } = useSelector((state) => state.cart)
+	const [quantity, setQuantity] = useState(1)
 
 	useEffect(() => {
 		dispatch(fetchProducts());
@@ -17,7 +18,7 @@ const Bags = () => {
 		<div id="product">
 			{product.filter((item) => {
 					return item.category === "bag";
-				}).map((prod) => (
+				}).map((prod) => ( 
 				<div className="card">
 					<Link to={`/sacs/${prod.id}`}>
 						<img src={prod.image} alt="" /> 
@@ -28,7 +29,7 @@ const Bags = () => {
 						</h3>
 						<span>{prod.price}€</span>
 						 <p>{prod.description}</p>
-						<button onClick={() => dispatch(addToCart(prod.id, cart))}>Ajouter au panier</button> 
+						<button onClick={() => dispatch(addToCart(prod.id, quantity))}>Ajouter au panier</button> 
 					</div>
 				</div>
 			))}

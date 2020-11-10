@@ -44,7 +44,7 @@ const fetchingProductError = (error) => {
 // };
 
 export function fetchProducts () {
-	return function (dispatch) {
+	return function (dispatch, quantity) {
 	  dispatch({
 		type: FETCHING_PRODUCT,
 	});

@@ -11,7 +11,24 @@
 	letter-spacing: 2px;
 	margin: 15px 50px;
 }
-
+.cartDetails{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.cartDetails img{
+    max-width: 500px;
+    min-width: 290px;
+    height: 300px;
+    display: block;
+    object-fit: cover;
+    margin: 25px;
+}
+.cartDetails .box{
+    max-width: 500px;
+    min-width: 290px;
+    margin: 25px;
+}
 .paiementButton {
 	display: flex;
 	justify-content: center;
@@ -46,7 +63,7 @@ section .cart {
 	height: 50px;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
 }
 .total a {
 	text-decoration: none;

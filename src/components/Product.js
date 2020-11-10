@@ -11,6 +11,7 @@ const Product = () => {
 	const { product } = useSelector((state) => state.product);
 	const dispatch = useDispatch();
 	const { cart } = useSelector((state) => state.cart);
+	const [quantity, setQuantity] = useState(1)
 
 	useEffect(() => {
 		dispatch(fetchProducts());
@@ -29,9 +30,34 @@ const Product = () => {
 							<div className="row">
 								<h2>{item.name}</h2>
 							</div>
-							<span>{item.price}€</span>
+							<span>{item.price * quantity}€</span>
 							<p>{item.description}</p>
-							<button className="cart" onClick={() => dispatch(addToCart(item.id, cart))}>
+							<div className="amount">
+								Quantité:{' '}
+								<select
+									value={quantity}
+									onChange={(e) => {
+										setQuantity(e.target.value);
+									}}
+								>
+									<option key={1} value={1}>
+										{1}
+									</option>
+									<option key={2} value={2}>
+										{2}
+									</option>
+									<option key={3} value={3}>
+										{3}
+									</option>
+									<option key={4} value={4}>
+										{4}
+									</option>
+									<option key={5} value={5}>
+										{5}
+									</option>
+								</select>
+							</div>
+							<button className="cart" onClick={() => dispatch(addToCart(item.id, quantity))}>
 								Ajouter au panier
 							</button>
 						</div>
